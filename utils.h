@@ -11,9 +11,19 @@ enum lineType
     Empty
 };
 
+enum valueType
+{
+    Text,
+    Number
+};
+
 int isValidIdentifier(char *str, int n);
 
 enum lineType checkLineType(char *str, int *startingChar);
+
+enum valueType checkValueType(char *value);
+
+int praseInt(char *str, int n);
 
 enum lineType checkLineType(char *str, int *startingChar)
 {
@@ -56,6 +66,39 @@ int isValidIdentifier(char *str, int n)
     return 1;
 }
 
+enum valueType checkValueType(char *value)
+{
+    int i = 0;
 
+    do{
+        if (isalpha(value[i]))
+        {
+            return Text;
+        }
+    } while(value[++i] != '\0');
+
+    return Number;
+}
+
+int praseInt(char *str, int n)
+{
+
+    int prasedString = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        int temp = (str[i] - 48);
+
+        for (int j = 0; j < n - i - 1; j ++){
+            temp *= 10;
+        }
+
+        prasedString += temp;
+    }
+
+    return prasedString;
+    
+
+}
 
 #endif
