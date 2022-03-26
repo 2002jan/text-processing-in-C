@@ -82,6 +82,7 @@ int main(int argc, char **argv)
                 if (!isValidIdentifier(line + start + 1, currentLen - 2))
                 {
                     printf("Invalid section name: %s", (line + start));
+                    return 1;
                 }
 
                 (line + start)[currentLen - 1] = '\0';
@@ -128,6 +129,7 @@ int main(int argc, char **argv)
                 if (!isValidIdentifier(token, strlen(token)))
                 {
                     printf("Invalid keyValue: %s", line);
+                    return 1;
                 }
 
                 currentKey->name = (char *)malloc(sizeof(char) * strlen(token));
@@ -138,6 +140,7 @@ int main(int argc, char **argv)
                 if (token == NULL || !isValidIdentifier(token, strlen(token)))
                 {
                     printf("Invalid keyValue: %s", line);
+                    return 1;
                 }
 
                 currentKey->value = (char *)malloc(sizeof(char) * strlen(token));
