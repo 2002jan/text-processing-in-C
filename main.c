@@ -197,7 +197,7 @@ int main(int argc, char **argv)
         {
             if (operator[0] == '+')
             {
-                printf("The result of expresstion: %s.%s %c %s.%s is\n", sec1, key1, operator, sec2, key2);
+                printf("The result of expresstion: %s.%s %c %s.%s is\n", sec1, key1, operator[0], sec2, key2);
                 printf("%s %s", val1, val2);
             }
             else
