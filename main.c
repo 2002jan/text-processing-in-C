@@ -99,7 +99,7 @@ int main(int argc, char **argv)
                 sections[sectionCount - 1] = (struct section *)malloc(sizeof(struct section));
 
                 currentSection = sections[sectionCount - 1];
-                currentSection->name = (char *)malloc(sizeof(char) * currentLen);
+                currentSection->name = (char *)malloc(sizeof(char) * (currentLen + 1));
                 currentSection->keyCount = 0;
 
                 strcpy(currentSection->name, line + start + 1);
@@ -131,7 +131,7 @@ int main(int argc, char **argv)
                     return 1;
                 }
 
-                currentKey->name = (char *)malloc(sizeof(char) * strlen(token));
+                currentKey->name = (char *)malloc(sizeof(char) * (strlen(token) + 1));
                 strcpy(currentKey->name, token);
 
                 token = strtok(NULL, " =\n");
@@ -142,7 +142,7 @@ int main(int argc, char **argv)
                     return 1;
                 }
 
-                currentKey->value = (char *)malloc(sizeof(char) * strlen(token));
+                currentKey->value = (char *)malloc(sizeof(char) * (strlen(token) + 1));
                 strcpy(currentKey->value, token);
             }
 
