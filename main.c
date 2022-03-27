@@ -198,7 +198,7 @@ int main(int argc, char **argv)
         {
             if (operator[0] == '+')
             {
-                printf("The result of expresstion: %s is\n", argv[3]);
+                printf("The result of expresstion: %s.%s %c %s.%s is\n", sec1, key1, operator, sec2, key2);
                 printf("%s %s", val1, val2);
             }
             else
@@ -210,7 +210,7 @@ int main(int argc, char **argv)
 
         if (type1 == Number)
         {
-            int num1 = praseInt(val1, strlen(val1)), num2 = praseInt(val2, strlen(val2));
+            double num1 = (double)praseInt(val1, strlen(val1)), num2 = (double)praseInt(val2, strlen(val2));
 
             switch (operator[0])
             {
@@ -232,8 +232,8 @@ int main(int argc, char **argv)
                 return 1;
                 break;
             }
-                printf("The result of expresstion: %s is\n", argv[3]);
-                printf("%s %c %s = %d",val1, operator[0], val2, num1);
+                printf("The result of expresstion: %s.%s %c %s.%s is\n", sec1, key1, operator[0], sec2, key2);
+                printf("%s %c %s = %f",val1, operator[0], val2, num1);
         }
     }
 
