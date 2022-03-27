@@ -74,7 +74,7 @@ int main(int argc, char **argv)
             int start = 0;
             enum lineType type = checkLineType(line, &start);
             int currentLen = strlen(line + start);
-            currentLen -= 1;
+            currentLen -= (line + start)[currentLen - 2] == '\r' ? 2 : 1;
 
             if (type == Section && (line + start)[currentLen - 1] == ']')
             {
@@ -123,7 +123,7 @@ int main(int argc, char **argv)
 
                 char *token;
 
-                token = strtok(line, " =\n");
+                token = strtok(line, " =\r\n");
 
                 if (!isValidIdentifier(token, strlen(token)))
                 {
@@ -134,7 +134,7 @@ int main(int argc, char **argv)
                 currentKey->name = (char *)malloc(sizeof(char) * (strlen(token) + 1));
                 strcpy(currentKey->name, token);
 
-                token = strtok(NULL, " =\n");
+                token = strtok(NULL, " =\r\n");
 
                 if (token == NULL || !isValidIdentifier(token, strlen(token)))
                 {
