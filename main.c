@@ -17,7 +17,10 @@ struct section
     int keyCount;
 };
 
-void findSectionKey(struct section **sections, int n, char *sectionTarget, char *keyTarget, int *section, int *key);
+int sectionCount = 0;
+struct section **sections;
+
+void findSectionKey(char *sectionTarget, char *keyTarget, int *section, int *key);
 
 int main(int argc, char **argv)
 {
@@ -28,10 +31,6 @@ int main(int argc, char **argv)
     }
 
     char *path = argv[1];
-
-    int sectionCount = 0;
-    struct section **sections;
-
     FILE *fptr;
 
     fptr = fopen(path, "r");
@@ -161,7 +160,7 @@ int main(int argc, char **argv)
 
         int targetSection = -1, targetKey = -1;
 
-        findSectionKey(sections, sectionCount, sectionTarget, keyTarget, &targetSection, &targetKey);
+        findSectionKey(sectionTarget, keyTarget, &targetSection, &targetKey);
 
         printf("Found value %s\nIn section: %s, with key: %s\n", sections[targetSection]->keys[targetKey]->value, sections[targetSection]->name, sections[targetSection]->keys[targetKey]->name);
     }
@@ -178,11 +177,11 @@ int main(int argc, char **argv)
         char *key2 = strtok(NULL, ".");
 
         int targetSection = -1, targetKey = -1;
-        findSectionKey(sections, sectionCount, sec1, key1, &targetSection, &targetKey);
+        findSectionKey(sec1, key1, &targetSection, &targetKey);
 
         char *val1 = sections[targetSection]->keys[targetKey]->value;
 
-        findSectionKey(sections, sectionCount, sec2, key2, &targetSection, &targetKey);
+        findSectionKey(sec2, key2, &targetSection, &targetKey);
 
         char *val2 = sections[targetSection]->keys[targetKey]->value;
 
@@ -255,9 +254,9 @@ int main(int argc, char **argv)
     return 0;
 }
 
-void findSectionKey(struct section **sections, int n, char *sectionTarget, char *keyTarget, int *section, int *key)
+void findSectionKey(char *sectionTarget, char *keyTarget, int *section, int *key)
 {
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < sectionCount; i++)
     {
         if (!strcmp(sections[i]->name, sectionTarget))
         {
