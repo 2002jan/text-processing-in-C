@@ -162,7 +162,7 @@ int main(int argc, char **argv)
 
         findSectionKey(sectionTarget, keyTarget, &targetSection, &targetKey);
 
-        printf("Found value %s\nIn section: %s, with key: %s\n", sections[targetSection]->keys[targetKey]->value, sections[targetSection]->name, sections[targetSection]->keys[targetKey]->name);
+        printf("Found value: %s\nIn section: %s, with key: %s\n", sections[targetSection]->keys[targetKey]->value, sections[targetSection]->name, sections[targetSection]->keys[targetKey]->name);
     }
     else
     {
