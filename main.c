@@ -163,6 +163,9 @@ int main(int argc, char **argv)
         findSectionKey(sectionTarget, keyTarget, &targetSection, &targetKey);
 
         printf("Found value: %s\nIn section: %s, with key: %s\n", sections[targetSection]->keys[targetKey]->value, sections[targetSection]->name, sections[targetSection]->keys[targetKey]->name);
+
+        free(sectionTarget);
+        free(keyTarget);
     }
     else
     {
@@ -234,6 +237,16 @@ int main(int argc, char **argv)
                 printf("The result of expresstion: %s.%s %c %s.%s is\n", sec1, key1, operator[0], sec2, key2);
                 printf("%s %c %s = %f",val1, operator[0], val2, num1);
         }
+        
+        free(exp1);
+        free(operator);
+        free(exp2);
+        free(sec1);
+        free(key1);
+        free(sec2);
+        free(key2);
+        free(val1);
+        free(val2);
     }
 
     for (int i = 0; i < sectionCount; i++)
