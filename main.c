@@ -270,6 +270,11 @@ void findSectionKey(char *sectionTarget, char *keyTarget, int *section, int *key
                     return;
                 }
             }
+            printf("Could not find key %s in [%s] section\n", keyTarget, sectionTarget);
+            exit(1);
         }
     }
+
+    printf("Could not find [%s] section\n", sectionTarget);
+    exit(1);
 }
